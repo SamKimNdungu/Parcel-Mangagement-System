@@ -14,9 +14,23 @@ class ParcelsController extends Controller
      */
     public function index()
     {
-        return view('Parcels.index');
+        
+        $parcels = Parcels::where('user_id', auth()->user()->id)
+        ->orderBy('id', 'DESC')
+         ->paginate(3);
+         return view('Parcels.index', [
+             'parcels' => $parcels,
+         ]);
     }
-
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function about_us() 
+    {
+    return view('Parcels.about_us');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +69,9 @@ class ParcelsController extends Controller
      */
     public function show(Parcels $parcels)
     {
-        return view('Parcels.show');
+        return view('Parcels.show', [           
+            'parcels'=>$parcels
+        ]);
     }
 
     /**
@@ -80,6 +96,7 @@ class ParcelsController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.

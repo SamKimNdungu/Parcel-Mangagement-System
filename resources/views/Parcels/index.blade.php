@@ -4,33 +4,57 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{route('parcels.index')}}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{route('parcels.create')}}">Place Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Modify Order</a>
-                      </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="">Track Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                      </li>
-                  </ul>
-                 
+            <div class="card">
+               
+                <div class="card-header">{{ __('Make A Parcel Order') }}
+                    <a href="{{route('home')}}" class="float-right">Back </a>
+                </div> 
+                <div class="card-body">
+        <table class="table">
+                <thead>
+                    <tr>
+                    <th>Origin</th>
+                    <th>Item</th>
+                    <th>Weight</th>
+                    <th>Destination</th>
+                    <th>order date</th>
+                    <th>Type</th>
+                    <th>Receiver Number</th>
+                  
+                </tr>
+                </thead>
+            <tbody>
+                @foreach ($parcels as $parcel)
+                    <tr>
+                        <td>
+                            {{$parcel->origin}} 
+                        </td>
+                        <td>
+                            {{ $parcel->item}}
+                            </td>
+                            <td>
+                              {{$parcel->weight}}
+                                </td>
+                                <td>
+                                    {{$parcel->destination}}
+                                </td>
+                                <td>
+                                    {{$parcel->order_date}}
+                                </td>
+                                <td>
+                                    {{$parcel->type}}
+                                </td>
+                                <td>
+                                    {{$parcel->receiver_number}}
+                                </td>
+                                
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{$parcels ->links()}}
                 </div>
-              </nav>
+            </div>
         </div>
     </div>
 </div>

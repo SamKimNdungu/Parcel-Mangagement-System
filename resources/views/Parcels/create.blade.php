@@ -1,12 +1,16 @@
 @extends('layouts.app')
-
+@if (session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+</div>
+@endif
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Make A Parcel Order') }}
-                    <a href="{{route('parcels.index')}}" class="float-right">Back </a>
+                    <a href="{{route('home')}}" class="float-right">Back </a>
                 </div>     
                 <div class="card-body">
               <form action="{{route('parcels.store')}}" method="post">
